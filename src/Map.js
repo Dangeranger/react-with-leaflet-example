@@ -7,13 +7,16 @@ const style = {
 };
 
 class Map extends React.Component {
+  constructor() {
+    super();
+  }
+
   componentDidMount() {
-    // create map
     this.map = L.map("map", {
       center: [49.8419, 24.0315],
       zoom: 16,
       layers: [
-        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+        L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
           attribution:
             '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         })
@@ -23,6 +26,7 @@ class Map extends React.Component {
     // add marker
     this.marker = L.marker(this.props.markerPosition).addTo(this.map);
   }
+
   componentDidUpdate({ markerPosition }) {
     // check if position has changed
     if (this.props.markerPosition !== markerPosition) {
